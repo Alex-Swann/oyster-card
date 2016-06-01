@@ -1,4 +1,4 @@
-#Oystercard file 
+#Oystercard file  stuff
 
 
 class Oystercard
@@ -11,12 +11,12 @@ class Oystercard
     @balance = 0
     @user_travelling = false
     @journey_history = {}
-  end	
+  end
 
   def top_up(amount)
   	fail "ERROR: Balance limit is £ #{MAXIMUM_BALANCE}" if (balance + amount) > MAXIMUM_BALANCE
   	@balance += amount
-  end   
+  end
 
   def in_journey?
   	!!@entry_station
@@ -24,7 +24,7 @@ class Oystercard
 
   def touch_in(station_in)
   	fail "ERROR: Insufficient funds" if @balance < MINIMUM_FARE
-	   @entry_station = station_in   	
+	   @entry_station = station_in
     @user_travelling = true
   end
 
