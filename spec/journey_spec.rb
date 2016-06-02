@@ -10,8 +10,13 @@ describe Journey do
 
     subject(:journey) {described_class.new(station)}
 
+    it 'has an empty list of arrays by default' do
+      expect(journey.journeys).to be_empty
+    end
+
     it "has an entry station" do
-      expect(journey.entry_station).to eq station
+      journey.finish(other_station)
+      expect(journey.journeys[0].invert[other_station]).to eq station
     end
 
     it 'fare should return minimum fare' do
@@ -30,7 +35,9 @@ describe Journey do
     before{journey.finish(other_station)}
 
     it 'has an exit station' do
-        expect(journey.exit_station).to eq other_station
+        journey2 = Journey.new(station)
+        journey2.finish(other_station)
+        expect(journey2.journeys[0][station]).to eq other_station
     end
 
     it 'fare should return minimum fare' do

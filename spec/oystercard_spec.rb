@@ -8,9 +8,6 @@ describe Oystercard do
 	let(:exit_station) { double :exit_station }
 	let(:journey) {double :journey}
 
-	it 'has an empty list of arrays by default' do
-		expect(oystercard.journeys).to be_empty
-	end
 
 	describe '#balance' do
 

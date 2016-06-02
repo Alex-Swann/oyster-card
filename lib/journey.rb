@@ -4,7 +4,7 @@ class Journey
 
   PENALTY_FARE = 6
 
-  attr_reader :entry_station, :exit_station
+  attr_reader :journeys
 
   def initialize(entry_station = nil)
     @entry_station = entry_station
@@ -12,26 +12,26 @@ class Journey
     @journeys = []
   end
 
-  def finish(station = nil)
+  def finish(station)
     @exit_station = station
+    @journeys << {@entry_station => @exit_station}
     self
   end
 
   def fare
-    complete? ? Oystercard::MIN_FARE : penalty_fare
-  end
-
-  def penalty_fare
-    @journeys << journey.finish
-    @journeys << @journey.finish(station)
-    PENALTY_FARE
+    entry_station && exit_station ? Oystercard::MIN_FARE : PENALTY_FARE
   end
 
   # def journey_log
   #   Journey_log.new
   # end
 
-  def complete?
-    entry_station && exit_station
+  def in_progress?
+    entry_station
   end
+
+  private
+
+  attr_reader :entry_station, :exit_station
+
 end
