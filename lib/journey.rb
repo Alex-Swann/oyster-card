@@ -16,11 +16,13 @@ class Journey
     self
   end
 
-  def complete?
-    entry_station && exit_station
-  end
-
   def fare
     complete? ? Oystercard::MIN_FARE : PENALTY_FARE
+  end
+
+  private
+
+  def complete?
+    entry_station && exit_station
   end
 end

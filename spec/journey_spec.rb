@@ -14,10 +14,6 @@ describe Journey do
       expect(journey.entry_station).to eq station
     end
 
-    it 'journey is complete' do
-      expect(journey).not_to be_complete
-    end
-
     it 'fare should return minimum fare' do
       expect(journey.fare).to eq (Journey::PENALTY_FARE)
     end
@@ -37,10 +33,6 @@ describe Journey do
         expect(journey.exit_station).to eq other_station
     end
 
-    it 'journey is complete' do
-      expect(journey).not_to be_complete
-    end
-
     it 'fare should return minimum fare' do
       expect(journey.fare).to eq (Journey::PENALTY_FARE)
     end
@@ -51,10 +43,6 @@ describe Journey do
     subject(:journey) {described_class.new(station)}
 
     before {journey.finish(other_station)}
-
-    it 'journey is complete' do
-      expect(journey).to be_complete
-    end
 
     it 'fare should return minimum fare' do
       expect(journey.fare).to eq (Oystercard::MIN_FARE)

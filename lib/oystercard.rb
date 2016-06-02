@@ -15,12 +15,13 @@ class Oystercard
 	end
 
 	def topup(value)
-    fail "Balance exceeded limit of #{MAX_BALANCE}" if (balance + value) > MAX_BALANCE
+    message = "Balance exceeded limit of #{MAX_BALANCE}"
+    fail message if (balance + value) > MAX_BALANCE
 		@balance += value
 	end
 
   def in_journey?
-  	journey ? true : false
+  	!!journey
   end
 
   def touch_in(station)
@@ -33,7 +34,7 @@ class Oystercard
   end
 
   def touch_out(station)
-		@journey = Journey.new if @journey == nil
+		@journey = Journey.new if !journey
     @journeys << @journey.finish(station)
 		deduct(@journey.fare)
 		@journey = nil
