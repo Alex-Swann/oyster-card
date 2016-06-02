@@ -43,13 +43,6 @@ describe Oystercard do
 
 		it { is_expected.to respond_to(:touch_in).with(1).argument }
 
-
-		it 'allows user to touch in' do
-			oystercard.topup(10)
-			oystercard.touch_in(station)
-			expect(oystercard.in_journey?).to eq(true)
-		end
-
 		it 'fails if balance is below MIN_FARE' do
 			expect{oystercard.touch_in(station)}.to raise_error "insufficient balance"
 		end
@@ -65,14 +58,6 @@ describe Oystercard do
 	describe '#touch_out' do
 
 		it { is_expected.to respond_to(:touch_out).with(1).argument }
-
-
-		it 'allows user to touch out' do
-			oystercard.topup(10)
-			oystercard.touch_in(station)
-			oystercard.touch_out(exit_station)
-			expect(oystercard.in_journey?).to eq(false)
-		end
 
 		it 'charges min fair for complete journey' do
 			oystercard.topup(10)

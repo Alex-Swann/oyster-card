@@ -49,4 +49,16 @@ describe Journey do
     end
 
   end
+
+    # it 'allows user to touch in' do
+    #   oystercard.topup(10)
+    #   oystercard.touch_in(station)
+    #   expect(oystercard.in_journey?).to eq(true)
+    # end
+    # it 'allows user to touch out' do
+    #   oystercard.topup(10)
+    #   oystercard.touch_in(station)
+    #   oystercard.touch_out(exit_station)
+    #   expect(oystercard.in_journey?).to eq(false)
+    # end
 end
