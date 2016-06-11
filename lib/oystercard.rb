@@ -3,7 +3,7 @@ require_relative 'station'
 
 class Oystercard
 
-	attr_reader :balance, :journey
+	attr_reader :balance
 
 	MAX_BALANCE = 90
   MIN_FARE = 1
@@ -32,6 +32,10 @@ class Oystercard
     deduct(@journey.fare)
 		@journey = Journey.new
     balance
+  end
+
+  def journeys
+    Journey.journeys_log
   end
 
 	  private
